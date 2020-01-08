@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import MikePhoto from "../../img/LRS.png";
+import Luis from "../../img/LRS.png";
 import { Context } from "./../store/appContext";
 
 export const ContactCard = props => {
@@ -17,11 +17,6 @@ export const ContactCard = props => {
 		address: props.address
 	});
 
-	function toDelete(id) {
-		//Agregar Modal.js
-		actions.onDelete(id, props.index);
-	}
-
 	function onTransit(e, name) {
 		const data = Object.assign({}, dataContact);
 		data[name] = e.target.value;
@@ -33,11 +28,7 @@ export const ContactCard = props => {
 			<li className="list-group-item">
 				<div className="row w-100">
 					<div className="col-12 col-sm-6 col-md-3 px-0">
-						<img
-							src={MikePhoto}
-							alt="Mike Anamendolla"
-							className="rounded-circle mx-auto d-block img-fluid"
-						/>
+						<img src={Luis} alt="Mike Anamendolla" className="rounded-circle mx-auto d-block img-fluid" />
 					</div>
 					<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
 						<div className="float-right">
@@ -48,7 +39,7 @@ export const ContactCard = props => {
 								data-target={"#exampleModal" + props.id}>
 								<i className="fas fa-pencil-alt mr-3" />
 							</button>
-							<button className="btn" onClick={() => toDelete(props.id)}>
+							<button className="btn" onClick={() => actions.onDelete(props.id)}>
 								<i className="fas fa-trash-alt" />
 							</button>
 						</div>
@@ -87,7 +78,7 @@ export const ContactCard = props => {
 					<div className="modal-content">
 						<div className="modal-header">
 							<h5 className="modal-title" id="exampleModalLabel">
-								Modal title
+								Update Contact
 							</h5>
 							<button type="button" className="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>

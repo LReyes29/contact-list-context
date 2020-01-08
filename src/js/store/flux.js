@@ -13,7 +13,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			onCreate: data => {
-				const store = getStore();
 				fetch("https://assets.breatheco.de/apis/fake/contact/", {
 					method: "POST",
 					body: JSON.stringify(data),
@@ -22,11 +21,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				})
 					.then(resp => resp.json())
-					.then(data => console.log(data));
+					.then(() => getActions().getContacts("https://assets.breatheco.de/apis/fake/contact/agenda/eli"));
 			},
 
 			onUpdate: (data, id) => {
-				const store = getStore();
 				fetch("https://assets.breatheco.de/apis/fake/contact/" + id, {
 					method: "PUT",
 					body: JSON.stringify(data),
@@ -35,11 +33,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				})
 					.then(resp => resp.json())
-					.then(data => getActions().getContacts("https://assets.breatheco.de/apis/fake/contact/agenda/eli"));
+					.then(() => getActions().getContacts("https://assets.breatheco.de/apis/fake/contact/agenda/eli"));
 			},
 
-			onDelete: (id, index) => {
-				const store = getStore();
+			onDelete: id => {
 				fetch("https://assets.breatheco.de/apis/fake/contact/" + id, {
 					method: "DELETE",
 					headers: {
@@ -47,7 +44,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				})
 					.then(resp => resp.json())
-					.then(data => getActions().getContacts("https://assets.breatheco.de/apis/fake/contact/agenda/eli"));
+					.then(() => getActions().getContacts("https://assets.breatheco.de/apis/fake/contact/agenda/eli"));
 			}
 		}
 	};

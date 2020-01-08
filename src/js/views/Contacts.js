@@ -34,7 +34,6 @@ export const Contacts = () => {
 									address={item.address}
 									key={i}
 									index={i}
-									onDelete={() => setState({ showModal: true })}
 								/>
 							);
 						})}
